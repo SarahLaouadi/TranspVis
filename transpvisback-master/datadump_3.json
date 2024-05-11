@@ -1,0 +1,2 @@
+CURRENT_DIR =  /code/apps/ml/income_classifier
+Exception while loading the algorithms to the registry, No module named 'scipy.sparse._csr'
