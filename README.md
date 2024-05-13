@@ -16,15 +16,29 @@ I- Server:
    
   and wait until all requirements are installed. NB: may take a long time if you have a bad internet connection
   
-  6- run the command: docker compose up to run the server
+  6- run the command: 
+  
+ 	 docker compose up
+  
+  to run the server
   
   7- open another git bash terminal in vs code: 
   
-    7.1- run the command: docker-compose exec api-transpvisback bash
+    7.1- run the command: 
+    
+    	docker-compose exec api-transpvisback bash
 	
-    7.2- run the command: python manage.py makemigrations and wait until it finishes
+    7.2- run the command: 
+    
+    	python manage.py makemigrations 
+     
+     and wait until it finishes
 	
-    7.2- run the command: python manage.py migrate and wait until it finishes
+    7.2- run the command: 
+    
+    	python manage.py migrate 
+     
+     and wait until it finishes
 	
   8- go back to the first terminal where the docker is running and make sure there are no errors.
   
@@ -33,9 +47,17 @@ II- Front-end:
 
   1- Right click on the transvis-front-main folder and click "open git Bash here"
   
-  2- run the command: "npm install" and wait until it finishes installing all the necessary packages.
+  2- run the command: 
   
-  3- run the command: "npm start" to run the front-end
+  	npm install
+  
+  and wait until it finishes installing all the necessary packages.
+  
+  3- run the command: 
+  
+  	npm start
+   
+   to run the front-end
   
 
 III- For any problems contact: js_laouadi@esi.dz
