@@ -8,9 +8,9 @@ I- Server:
   
   3- run docker desktop.
   
-  4- Open the folder transpvisback-master with VSCode then open a Git Bash terminal in VSCode.
-  
-  5- run the command: 
+  4- Open the folder transpvisback-master with VSCode then open a terminal.
+  	4.1: run the command: pip install requirements.txt
+  5- Open a Git Bash terminal in VSCode and run the command: 
   
   	docker compose build 
    
