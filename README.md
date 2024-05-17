@@ -10,13 +10,16 @@ I- Server:
   
   4- Open the folder transpvisback-master with VSCode then open a terminal.
   
-  	4.1: run the command: pip install requirements.txt
+  	4.1: run the command: pip install requirements.txt\
    
   5- Open a Git Bash terminal in VSCode and run the command: 
   
   	docker compose build 
    
-  and wait until all requirements are installed. NB: may take a long time if you have a bad internet connection
+
+  	5.1: wait until all requirements are installed. NB: may take a long time if you have a bad internet connection
+
+   	5.2: make sure that the packages that are in the docker container have the same version as your vscode envirnment ==> especially Wheel and setup pools
   
   6- run the command: 
   
