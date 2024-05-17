@@ -43,7 +43,7 @@ I- Server:
   8- go back to the first terminal where the docker is running and make sure there are no errors.
   
 
-II- Front-end:
+II- Front-end:  /// install Nodejs version: v14.17.3
 
   1- Right click on the transvis-front-main folder and click "open git Bash here"
   
