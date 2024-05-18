@@ -112,9 +112,10 @@ const InformationElementForm = ({
                     <span className="form-label">Weight</span>
                     <input
                         type="number"
+                        step="0.0001"
                         min="0"
                         max="1"
-                        value="1"
+                        //value="1"
                         className="form-control"
                         // value={weight}
                         onChange={e => {
