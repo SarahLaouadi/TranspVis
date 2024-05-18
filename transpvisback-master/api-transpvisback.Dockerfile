@@ -21,6 +21,7 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN pip install psycopg2 
+RUN pip install imbalanced-learn 
 
 # move code from host to image
 ADD . /code/
