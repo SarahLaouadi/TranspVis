@@ -86,6 +86,9 @@ export const generateStakeholderChooseModel = async (transparencyNote, model) =>
             }
             console.log(calculateTFIDF(entityNames,element.entity))
             let tfidf = calculateTFIDF(entityNames,element.entity)
+            if ((entityNames.includes(element.entity)) && (tfidf === 0)) {
+                tfidf = 1
+             }
             const newST = {
                 name: element.entity,
                 description: "Description of Stakeholder",
@@ -146,6 +149,9 @@ export const generateStakeholder = transparencyNote => async dispatch => {
             }
             console.log(calculateTFIDF(entityNames,element.entity))
             let tfidf = calculateTFIDF(entityNames,element.entity)
+            if ((entityNames.includes(element.entity)) && (tfidf === 0)) {
+                tfidf = 1
+             }
             const newST = {
                 name: element.entity,
                 description: "Description of Stakeholder",
