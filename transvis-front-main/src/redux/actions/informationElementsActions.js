@@ -38,6 +38,22 @@ export const getInformationElements = (params = {}) => async dispatch => {
 };
 
 
+export const getInfoById = async (appId) => {
+    try {
+        const url = environment.apiEndpoint;
+        const res = await axios.get(url + "information-elements/", {
+            params: { appId: appId }
+        });
+
+        const filteredInfoelemenets = res.data.filter(IE => IE.application === appId);
+
+        return filteredInfoelemenets;
+    } catch (error) {
+        console.error("Error get ie: ", error);
+        throw error;
+    }
+};
+
 export const generateInformationElement = transparencyNote => async dispatch => {
     const config = {
         headers: {
@@ -60,13 +76,21 @@ export const generateInformationElement = transparencyNote => async dispatch => 
         console.log("res.data = ", res.data);
 
         let informationElements = [];
-
+        const entityNames = res.data.map(item => item.summary);
+        console.log("entityNames = ", entityNames);
+        
         for (let i = 0; i < res.data.length; i++) {
+            const element = res.data[i];
+            let tfidf = calculateTFIDF(entityNames, element.summary);
+            if ((entityNames.includes(element.summary)) && (tfidf === 0)) {
+                tfidf = 1
+             }
             const newIE = {
-                name: res.data[i].summary,
+                name: element.summary,
                 description: "Description of DataElement",
-                type: res.data[i].label,
-                weight: 0,
+                type: element.label,
+                weight: tfidf.toFixed(4),
+                modell: "LSTM",
             };
             informationElements.push(newIE);
         }
@@ -82,7 +106,76 @@ export const generateInformationElement = transparencyNote => async dispatch => 
 };
 
 
+export const generateInformationElementchoose = async (transparencyNote, model) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
 
+    try {
+        const url2 = environmentML.apiEndpoint;
+
+        const transparency_note = transparencyNote;
+        console.log("transparency_note : ", transparency_note);
+        console.log('Response data:', url2);
+        const res = await axios.post(
+            url2 + model + "/",
+            JSON.stringify(transparency_note),
+            config
+        );
+
+        console.log("res.data = ", res.data);
+
+        let informationElements = [];
+        const entityNames = res.data.map(item => item.summary);
+        for (let i = 0; i < res.data.length; i++) {
+            const element = res.data[i];
+            let tfidf = calculateTFIDF(entityNames, element.summary);
+            if ((entityNames.includes(element.summary)) && (tfidf === 0)) {
+                tfidf = 1
+             }
+            const newIE = {
+                name: element.summary,
+                description: "Description of DataElement",
+                type: element.label,
+                weight: tfidf.toFixed(4),
+                modell: model === "predictModelFull" ? "LSTM" :
+                model === "predictHuggingFaceModel" ? "BART" :
+                "Manual" 
+            };
+            informationElements.push(newIE);
+        }
+        console.log("newIE = ", informationElements);
+
+        return informationElements;
+
+    } catch (error) {
+        console.error("Error generating information elements: ", error);
+        return []; // Return an empty array in case of error
+    }
+};
+
+
+function calculateTFIDF(data, term) {
+    // Term frequency (TF)
+    const termFrequency = data.filter(word => word.toLowerCase() === term.toLowerCase()).length / data.length;
+  
+    // Document frequency (DF) in a hypothetical corpus (assuming all documents are present)
+    const documentFrequency = 1; // Adjust this value if you have a larger corpus
+  
+    // Inverse document frequency (IDF) with smoothing (to avoid division by zero)
+    const inverseDocumentFrequency = Math.log((data.length + 1) / (documentFrequency + 1)) / Math.log(2); // Add 1 to DF to prevent division by zero
+  
+    // Normalize TF-IDF for values between 0 and 1
+    const maxIDF = Math.log(data.length + 1) / Math.log(2); // Maximum possible IDF for this corpus
+    const normalizedIDF = inverseDocumentFrequency / maxIDF;
+  
+    // TF-IDF weight
+    const tfidfWeight = termFrequency * normalizedIDF;
+  
+    return tfidfWeight;
+  }
 
 export const generateInformationElementHuggingFace = appId => async dispatch => {
     const config = {
@@ -242,7 +335,7 @@ export const addInformationElementAssociation = (
 };
 
 // Remove information element association
-export const removeInformationElementAssociation = (
+export const rERC5b4PoR51qWEvAWuJsX6yRVRBvRVta7 = (
     source,
     target
 ) => async dispatch => {
