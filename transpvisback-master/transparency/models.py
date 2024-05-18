@@ -49,6 +49,7 @@ class InformationElement(models.Model):
     label = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    modell = models.CharField(max_length=255, default='Manual')
     type = models.CharField(
         max_length=255, choices=InformationElementTypes.list(), default="data"
     )
@@ -66,9 +67,13 @@ class InformationElement(models.Model):
         blank=True,
         symmetrical=False,
     )
-    weight = models.IntegerField(
-        default=0, validators=[MaxValueValidator(1), MinValueValidator(0)]
+
+    weight = models.DecimalField(
+        max_digits=6,  # Adjust as needed for desired precision
+        decimal_places=4,  # Adjust as needed for desired decimal places
+        default=0.0, validators=[MaxValueValidator(1.0), MinValueValidator(0.0)]
     )
+
 
     class Meta:
         verbose_name_plural = "Information Elements"
