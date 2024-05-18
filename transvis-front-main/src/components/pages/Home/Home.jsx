@@ -40,6 +40,7 @@ import {
 
 import { toggleModal } from "../../../redux/actions/modalActions";
 import StakeholderForm from "../../forms/StakeholderForm";
+import InfoForm2 from "./ieform1";
 import InformationElementForm from "../../forms/InformationElementForm/InformationElementForm";
 import InformationElementAssociationForm from "../../forms/InformationElementAssociationForm/InformationElementAssociationForm";
 import StakeholderInformationElementRelationshipForm from "../../forms/StakeholderInformationElementRelationshipForm/StakeholderInformationElementRelationshipForm";
@@ -122,7 +123,7 @@ const Home = ({
             case "stakeholder":
                 return <StakeholderForm2 />;
             case "information-element":
-                return <InformationElementForm />;
+                return <InfoForm2 />;
             case "ie-association":
                 return <InformationElementAssociationForm />;
             case "stakeholder-information-element-relationship":
