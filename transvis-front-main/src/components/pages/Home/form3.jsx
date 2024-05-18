@@ -4,7 +4,7 @@ import { createStakeholder } from "../../../redux/actions/stakeholderActions";
 
 
 import { toggleModal, toggleModal3 } from "../../../redux/actions/modalActions";
-import { getStakeholdersById, updateStakeholder } from "../../../redux/actions/stakeholderActions";
+import { updateStakeholder } from "../../../redux/actions/stakeholderActions";
 const StakeholderForm4 = ({ application, applicationData, stakeholderst, namelist1,updateStakeholder,  stakeholders, toggleModal, toggleModal3, createStakeholder }) => {
      // State to keep track of selected stakeholders
      const [selectedStakeholders, setSelectedStakeholders] = useState([]);
@@ -95,6 +95,7 @@ const StakeholderForm4 = ({ application, applicationData, stakeholderst, namelis
         
         <form className="form-modal" onSubmit={handleSubmit}>
         <h3>Model's results</h3>
+        <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
         <div className="form-group">
             <span className="form-label-req">Stakeholders:</span>
             {stakeholders.map((stakeholder, index) => {
@@ -119,6 +120,7 @@ const StakeholderForm4 = ({ application, applicationData, stakeholderst, namelis
                 );
             })}
             <p>Selected Stakeholders: {selectedStakeholders.join(', ')}</p>
+        </div>
         </div>
         <button type="submit" className="form-submit">
             Add
