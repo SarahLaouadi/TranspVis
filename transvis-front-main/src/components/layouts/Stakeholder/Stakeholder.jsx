@@ -289,12 +289,11 @@ const Stakeholder = ({
                         {'This Stakeholder was manually added'}
                     </span>
                     :
-                    <span
-                        style={{
-                            paddingBottom: "3px"
-                        }}
-                    >
-                        {'This Stakeholder was added by ' + stakeholder.modell}
+                    <span style={{ paddingBottom: "3px" }}>
+                        {'This Stakeholder was added by '}
+                        <span style={{ color: "Magenta" }}>
+                            {stakeholder.modell}
+                        </span>
                     </span>
                 }               <
                     div className="detail__other">
