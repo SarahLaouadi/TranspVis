@@ -31,8 +31,10 @@ const InformationElement = ({
 
     const [isEditName, setIsEditName] = useState(false);
     const [isEditDescription, setIsEditDescription] = useState(false);
+    const [isEditWeight, setIsEditWeight] = useState(false);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [weight, setWeight] = useState("");
 
     useEffect(() => {
         afterRef?.current?.setAttribute(
@@ -44,6 +46,7 @@ const InformationElement = ({
     useEffect(() => {
         setIsEditName(false);
         setIsEditDescription(false);
+        setIsEditWeight(false);
     }, [informationElement]);
 
     const handleToggle = toggleName => {
@@ -94,6 +97,7 @@ const InformationElement = ({
         e.preventDefault();
         setIsEditName(false);
         setIsEditDescription(false);
+        setIsEditWeight(false);
         updateInformationElement(informationElement.id, formData);
     };
 
@@ -153,6 +157,54 @@ const InformationElement = ({
                 >
                     {informationElement.label}
                 </span>
+            </div>
+            <div className="detail__title">
+                {isEditWeight ? (
+                    <form>
+                        <input
+                            className="detail__input"
+                            type="text"
+                            name=""
+                            value={weight}
+                            onChange={e => {
+                                setWeight(e.target.value);
+                            }}
+                            id=""
+                            autoFocus
+                        />
+                        <div className="detail__action">
+                            <a
+                                className="detail__primary"
+                                onClick={e => {
+                                    handleUpdate(e, { weight });
+                                }}
+                            >
+                                Update
+                            </a>
+                            <a
+                                className="detail__secondary"
+                                onClick={() => setIsEditWeight(false)}
+                            >
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                ) : (
+                    <h4
+                        style={{
+                            maxWidth: "350px",
+                            lineHeight: "2rem",
+                            cursor: "pointer"
+                        }}
+                        title="Click to edit"
+                        onClick={e => {
+                            setWeight(informationElement.weight);
+                            setIsEditWeight(true);
+                        }}
+                    >
+                         {'Information element s weight: ' + informationElement.weight}
+                    </h4>
+                )}
             </div>
             <div className="detail__info">
                 <div className="detail__type">
@@ -214,6 +266,22 @@ const InformationElement = ({
                         )}
                     </p>
                 )}
+                {informationElement.modell === "Manual" ?
+                    <span
+                        style={{
+                            paddingBottom: "3px"
+                        }}
+                    >
+                        {'This Information element was manually added'}
+                    </span>
+                    :
+                    <span style={{ paddingBottom: "3px" }}>
+                        {'This Information element was added by '}
+                        <span style={{ color: "Magenta" }}>
+                            {informationElement.modell}
+                        </span>
+                    </span>
+                } 
                 <div className="detail__other">
                     <div
                         className={
