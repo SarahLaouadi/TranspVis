@@ -93,7 +93,7 @@ export const createApplication = formData => async dispatch => {
         dispatch({ type: CREATE_APPLICATION, payload: res.data });
     } catch (error) {
         dispatch({ type: TOGGLE_LOADING_APPLICATION });
-        console.error("Error create application: ", error);
+        console.error("Error create application: ", error.response.data);
     }
 };
 
