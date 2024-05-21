@@ -255,10 +255,6 @@ class PredictionFunctionViewFull(views.APIView):
                 print("prediction results ==========",predictionResults)
                 summaries.append(prediction["summary"]) 
             cpt = cpt+1
-        predictionResults.append({'summary': 'personal information', 'label': 'data'})
-        predictionResults.append({'summary': 'assuring security of user', 'label': 'process'})
-        predictionResults.append({'summary': 'payment information', 'label': 'data'})
-        predictionResults.append({'summary': 'cookies information', 'label': 'policy'})
        
 
         return Response(predictionResults)
