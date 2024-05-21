@@ -15,6 +15,7 @@ import {
     REMOVE_FOCUSED,
     REMOVE_INFORMATION_ELEMENT_ASSOCIATION
 } from "../types";
+
 import { environment } from "../../utils/environment";
 import { environmentML } from "../../utils/environmentML";
 
