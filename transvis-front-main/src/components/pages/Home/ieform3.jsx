@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
@@ -29,7 +30,11 @@ const InfoForm4 = ({ application, applicationData, informationelement, namelist1
             return names.includes(stakeholder);   
     };*/
     const isIEDisabled = (namelist1, informatione) => {
+        console.log("Name List111111:", namelist1);
+        informatione.name = informatione.name.trimEnd();
         const foundIE = namelist1.find(item => item.name === informatione.name);
+        console.log("Name List222222:", informatione);
+        //foundIE = foundIE.name.replace(/\s/g, '')
         if (foundIE) {
             if (foundIE.weight === informatione.weight) {
                 return { disabled: true, color: 'gray' }; // Case 1: Same stakeholder and weight
