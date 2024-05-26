@@ -336,7 +336,7 @@ export const addInformationElementAssociation = (
 };
 
 // Remove information element association
-export const rERC5b4PoR51qWEvAWuJsX6yRVRBvRVta7 = (
+export const removeInformationElementAssociation = (
     source,
     target
 ) => async dispatch => {
