@@ -86,7 +86,7 @@ class PredictView(views.APIView):
         
         print("registry.endpoints ========= ", registry.endpoints)
         print("registry.endpoints ========= ", registry.endpoints)
-        algorithm_object = registry.endpoints[24]
+        algorithm_object = registry.endpoints[1]
         prediction = algorithm_object.compute_prediction(request.data)
 
         label = prediction["label"] if "label" in prediction else "error"
@@ -115,7 +115,7 @@ class PredictLSTMView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 1
-        algorithm_object = registry.endpoints[25]
+        algorithm_object = registry.endpoints[2]
         print("algorithme object = ", algorithm_object)
         prediction = algorithm_object.compute_prediction(request.data)
         summary = prediction["summary"] if "summary" in prediction else "error"
@@ -142,7 +142,7 @@ class PredictClassView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[26]
+        algorithm_object = registry.endpoints[3]
         prediction = algorithm_object.compute_prediction(request.data)
 
         label = prediction["label"] if "label" in prediction else "error"
@@ -170,7 +170,7 @@ class PredictionFunctionView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[27]
+        algorithm_object = registry.endpoints[4]
         data = request.data["paragraph"]
         print (data)
         prediction = algorithm_object.mlmodel(data)
@@ -214,7 +214,7 @@ class PredictionFunctionViewFull(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[27]
+        algorithm_object = registry.endpoints[4]
         data = request.data
         print("data = ",data)
         if isinstance(data, str):
@@ -269,7 +269,7 @@ class PredictSummaryView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[28]
+        algorithm_object = registry.endpoints[5]
         data = request.data["paragraph"]
         if len(data.split()) < 10:
             prediction = "paragraphe too short !!"
@@ -300,7 +300,7 @@ class PredictionViewHuggingFaceFull(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[29]
+        algorithm_object = registry.endpoints[6]
         data = request.data
         data = data.split("\n")
         table = []
@@ -349,7 +349,7 @@ class NER_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[30]
+        algorithm_object = registry.endpoints[7]
         data = request.data['transparencyNote']
         print("data = ",data)
         if isinstance(data, str):
@@ -408,7 +408,7 @@ class T_NER_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[33]
+        algorithm_object = registry.endpoints[8]
         data = request.data['transparencyNote']
         print("data = ",data)
         if isinstance(data, str):
@@ -468,7 +468,7 @@ class X_NER_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[31]
+        algorithm_object = registry.endpoints[9]
         data = request.data['transparencyNote']
         print("data = ",data)
         if isinstance(data, str):
@@ -527,7 +527,7 @@ class B_NER_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         alg_index = 0
-        algorithm_object = registry.endpoints[32]
+        algorithm_object = registry.endpoints[10]
         data = request.data['transparencyNote']
         print("data = ",data)
         if isinstance(data, str):
@@ -587,7 +587,7 @@ class Relation_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         # Create an instance of the relation_model
-        algorithm_object = registry.endpoints[34]
+        algorithm_object = registry.endpoints[11]
         alg_index = 0
         # Define max_length
         max_length = 2  # You can adjust this value as needed
@@ -633,7 +633,7 @@ class binary_Relation_Prediction(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         # Create an instance of the relation_model
-        algorithm_object = registry.endpoints[35]
+        algorithm_object = registry.endpoints[12]
 
         alg_index = 0
         stakeholders = request.data['stakeholder']
