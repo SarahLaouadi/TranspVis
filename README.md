@@ -26,8 +26,26 @@ I- Server:
  	 docker compose up
   
   to run the server
+
+  After that open another git bash terminal in vs code and run the command: 
+    
+    	python manage.py makemigrations 
+     
+     and wait until it finishes
+	
+    Then run the command: 
+    
+    	python manage.py migrate 
+     
+     and wait until it finishes
+
+     Then run the command 
+
+     	python manage.py createsuperuser
+
+      to create the user that accesses the admin page (127.0.0.1:8000/admin)
   
-  7- open another git bash terminal in vs code: 
+  7- open another git bash terminal in vs code: (Optional if there is no problem with the app)
   
     7.1- run the command: 
     
